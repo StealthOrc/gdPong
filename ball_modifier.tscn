@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4cg2pyk41qby"]
+
+[ext_resource type="Script" path="res://ball_modifier.gd" id="1_ajgyl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w8xqt"]
+
+[node name="BallModifier" type="Area2D"]
+scale = Vector2(5, 5)
+script = ExtResource("1_ajgyl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_w8xqt")
+debug_color = Color(0, 0.6, 0.709804, 0.419608)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

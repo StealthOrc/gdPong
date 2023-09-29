@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=3 uid="uid://c32ii523qwsb0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ljt7h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fxfvv"]
+
+[node name="SceneRoot" type="Node2D"]
+
+[node name="SBLeft" type="StaticBody2D" parent="."]
+position = Vector2(574, 314)
+scale = Vector2(3.63999, 3.63999)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SBLeft"]
+position = Vector2(-157.693, 3.02199)
+scale = Vector2(0.0274726, 9.06596)
+shape = SubResource("RectangleShape2D_ljt7h")
+debug_color = Color(0, 0.6, 0.701961, 1)
+
+[node name="SBRight" type="StaticBody2D" parent="."]
+position = Vector2(574, 314)
+scale = Vector2(3.63999, 3.63999)
+
+[node name="BoundaryRight" type="CollisionShape2D" parent="SBRight"]
+position = Vector2(158.792, 3.02199)
+scale = Vector2(0.0274726, 9.06596)
+shape = SubResource("RectangleShape2D_ljt7h")
+debug_color = Color(0, 0.6, 0.701961, 1)
+
+[node name="SBUp" type="StaticBody2D" parent="."]
+position = Vector2(574, 314)
+scale = Vector2(3.63999, 3.63999)
+
+[node name="BoundaryUp" type="CollisionShape2D" parent="SBUp"]
+position = Vector2(0.274734, -86.264)
+scale = Vector2(15.9341, 0.0274726)
+shape = SubResource("RectangleShape2D_fxfvv")
+debug_color = Color(0, 0.6, 0.701961, 1)
+
+[node name="SBDown" type="StaticBody2D" parent="."]
+position = Vector2(574, 314)
+scale = Vector2(3.63999, 3.63999)
+
+[node name="BoundaryDown" type="CollisionShape2D" parent="SBDown"]
+position = Vector2(0.274734, 91.7585)
+scale = Vector2(15.9341, 0.0274726)
+shape = SubResource("RectangleShape2D_fxfvv")
+debug_color = Color(0, 0.6, 0.701961, 1)

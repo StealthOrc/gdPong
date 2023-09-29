@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://c32ii523qwsb0"]
+
+[ext_resource type="Script" path="res://scene_root.gd" id="1_ghy00"]
+[ext_resource type="PackedScene" uid="uid://ufwyxt2lsf2c" path="res://ball.tscn" id="1_qh3ta"]
+[ext_resource type="PackedScene" uid="uid://bh0qbdl0x3xq8" path="res://boundary.tscn" id="2_d1i1s"]
+[ext_resource type="PackedScene" uid="uid://b7k357mqplyup" path="res://pedal.tscn" id="3_0doij"]
+[ext_resource type="PackedScene" uid="uid://df6djjudj5jtw" path="res://goal.tscn" id="5_t8pnd"]
+[ext_resource type="Script" path="res://Scripts/goal.gd" id="6_akkhm"]
+
+[node name="SceneRoot" type="Node2D"]
+script = ExtResource("1_ghy00")
+
+[node name="Ball" parent="." instance=ExtResource("1_qh3ta")]
+position = Vector2(575, 315)
+
+[node name="UpBoundary" parent="." instance=ExtResource("2_d1i1s")]
+
+[node name="DownBoundary" parent="." instance=ExtResource("2_d1i1s")]
+position = Vector2(0, 787)
+
+[node name="Pedal" parent="." instance=ExtResource("3_0doij")]
+position = Vector2(72, 323)
+scale = Vector2(0.5, 1)
+
+[node name="Pedal2" parent="." instance=ExtResource("3_0doij")]
+position = Vector2(1093, 328)
+scale = Vector2(0.5, 1)
+
+[node name="Goal" parent="." instance=ExtResource("5_t8pnd")]
+position = Vector2(0, -1)
+script = ExtResource("6_akkhm")
+
+[node name="Goal2" parent="." instance=ExtResource("5_t8pnd")]
+position = Vector2(1153, 0)
+script = ExtResource("6_akkhm")
+isLeftGoal = false
+
+[connection signal="area_entered" from="Goal" to="Goal" method="_on_area_entered"]
+[connection signal="area_entered" from="Goal2" to="Goal2" method="_on_area_entered"]

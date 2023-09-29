@@ -1,0 +1,122 @@
+[gd_scene load_steps=12 format=3 uid="uid://cj2hncyv4e1eg"]
+
+[ext_resource type="Script" path="res://Scripts/Pong.gd" id="1_81ykt"]
+[ext_resource type="PackedScene" uid="uid://ufwyxt2lsf2c" path="res://ball.tscn" id="1_jggia"]
+[ext_resource type="PackedScene" uid="uid://bh0qbdl0x3xq8" path="res://boundary.tscn" id="2_6t5ik"]
+[ext_resource type="PackedScene" uid="uid://b7k357mqplyup" path="res://pedal.tscn" id="3_mfpq7"]
+[ext_resource type="PackedScene" uid="uid://df6djjudj5jtw" path="res://goal.tscn" id="4_3m7xb"]
+[ext_resource type="Script" path="res://Scripts/goal.gd" id="5_h85w2"]
+[ext_resource type="Script" path="res://Scripts/ResumeBtn.gd" id="7_wp4xh"]
+[ext_resource type="Script" path="res://Scripts/QuitMenuBtn.gd" id="8_swn6g"]
+[ext_resource type="Script" path="res://Scripts/ModSpawner.gd" id="9_yvbyy"]
+
+[sub_resource type="SystemFont" id="SystemFont_qy7i2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ry00b"]
+font = SubResource("SystemFont_qy7i2")
+font_size = 128
+
+[node name="Pong" type="Node2D"]
+position = Vector2(4, 2)
+script = ExtResource("1_81ykt")
+
+[node name="Ball" parent="." instance=ExtResource("1_jggia")]
+position = Vector2(800, 400)
+
+[node name="Pedal" parent="." instance=ExtResource("3_mfpq7")]
+position = Vector2(80, 400)
+scale = Vector2(0.5, 1)
+
+[node name="Pedal2" parent="." instance=ExtResource("3_mfpq7")]
+position = Vector2(1520, 400)
+scale = Vector2(0.5, 1)
+isPlayer1 = false
+
+[node name="ScoreLeftLabel" type="Label" parent="."]
+texture_filter = 1
+offset_left = 400.0
+offset_top = 50.0
+offset_right = 473.0
+offset_bottom = 228.0
+text = "0"
+label_settings = SubResource("LabelSettings_ry00b")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScoreRightLabel" type="Label" parent="."]
+texture_filter = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 1200.0
+offset_top = 50.0
+offset_right = 1273.0
+offset_bottom = 228.0
+grow_horizontal = 0
+text = "0
+"
+label_settings = SubResource("LabelSettings_ry00b")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Map" type="Node2D" parent="."]
+
+[node name="UpBoundary" parent="Map" instance=ExtResource("2_6t5ik")]
+position = Vector2(-20, -11)
+scale = Vector2(1.41752, 1)
+
+[node name="DownBoundary" parent="Map" instance=ExtResource("2_6t5ik")]
+position = Vector2(-13, 1038)
+scale = Vector2(1.4, 1)
+
+[node name="GoalLeft" parent="Map" instance=ExtResource("4_3m7xb")]
+position = Vector2(0, 1)
+scale = Vector2(1.01098, 1.4)
+script = ExtResource("5_h85w2")
+
+[node name="GoalRight" parent="Map" instance=ExtResource("4_3m7xb")]
+position = Vector2(1600, 0)
+scale = Vector2(1.01098, 1.4)
+script = ExtResource("5_h85w2")
+isLeftGoal = false
+
+[node name="PauseMenu" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BGColorRect" type="ColorRect" parent="PauseMenu"]
+custom_minimum_size = Vector2(1600, 900)
+layout_mode = 0
+offset_right = 1600.0
+offset_bottom = 900.0
+color = Color(0, 0, 0, 0.32549)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu"]
+layout_mode = 0
+offset_left = 720.0
+offset_right = 880.0
+offset_bottom = 900.0
+alignment = 1
+
+[node name="ResumeBtn" type="Button" parent="PauseMenu/VBoxContainer"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+text = "Resume"
+script = ExtResource("7_wp4xh")
+
+[node name="QuitBtn" type="Button" parent="PauseMenu/VBoxContainer"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+text = "Quit to Menu"
+script = ExtResource("8_swn6g")
+
+[node name="ModSpawner" type="Node2D" parent="."]
+script = ExtResource("9_yvbyy")
+
+[connection signal="area_entered" from="Map/GoalLeft" to="Map/GoalLeft" method="_on_area_entered"]
+[connection signal="area_entered" from="Map/GoalRight" to="Map/GoalRight" method="_on_area_entered"]
+[connection signal="pressed" from="PauseMenu/VBoxContainer/ResumeBtn" to="PauseMenu/VBoxContainer/ResumeBtn" method="_on_pressed"]
+[connection signal="pressed" from="PauseMenu/VBoxContainer/QuitBtn" to="PauseMenu/VBoxContainer/QuitBtn" method="_on_pressed"]

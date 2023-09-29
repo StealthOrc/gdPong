@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7k357mqplyup"]
+
+[ext_resource type="Script" path="res://Scripts/pedal.gd" id="1_7cu0d"]
+[ext_resource type="Texture2D" uid="uid://b0eeedt0568ft" path="res://Pedal.tres" id="1_s10kb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_orkdh"]
+size = Vector2(36, 126)
+
+[node name="Pedal" type="Area2D" groups=["player"]]
+script = ExtResource("1_7cu0d")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(3, 5)
+texture = ExtResource("1_s10kb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_orkdh")
+debug_color = Color(0, 0.976471, 0.235294, 0.917647)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

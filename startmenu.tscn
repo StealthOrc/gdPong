@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=3 uid="uid://bdfiumh2hd6q0"]
+
+[ext_resource type="Script" path="res://Scripts/StartBtn.gd" id="1_wloag"]
+[ext_resource type="Script" path="res://Scripts/QuitBtn.gd" id="2_daj4f"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2ijo6"]
+font_size = 128
+
+[node name="Startmenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+offset_left = 651.0
+offset_top = 161.0
+offset_right = 960.0
+offset_bottom = 339.0
+text = "Pong"
+label_settings = SubResource("LabelSettings_2ijo6")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 720.0
+offset_right = 880.0
+offset_bottom = 900.0
+alignment = 1
+
+[node name="StartBtn" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Start"
+script = ExtResource("1_wloag")
+
+[node name="QuitBtn" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Quit"
+script = ExtResource("2_daj4f")
+
+[connection signal="pressed" from="VBoxContainer/StartBtn" to="VBoxContainer/StartBtn" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitBtn" to="VBoxContainer/QuitBtn" method="_on_pressed"]
